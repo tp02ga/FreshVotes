@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
   <head>
     <title>FreshVotes Dashboard</title>
   </head>
   <body>
     <h1>FreshVotes Dashboard</h1>
     
-    <a href="/logout">Logout</a>
+    <form action="/logout" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <button type="submit">Logout</button>
+    </form>
   </body>
 </html>
