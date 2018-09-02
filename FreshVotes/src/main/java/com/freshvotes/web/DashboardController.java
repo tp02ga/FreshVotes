@@ -10,4 +10,9 @@ public class DashboardController {
   public String rootView () {
     return "index";
   }
+  
+  @GetMapping("/dashboard")
+  public String dashboard() {
+    return "dashboard";
+  }
 }
