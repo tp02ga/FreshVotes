@@ -1,10 +1,7 @@
 package com.freshvotes.security;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.freshvotes.domain.User;
@@ -12,11 +9,20 @@ import com.freshvotes.domain.User;
 public class CustomSecurityUser extends User implements UserDetails {
 
   private static final long serialVersionUID = -8351482943638214015L;
-  Set<Authority> authorities = new HashSet<>();
   
+  public CustomSecurityUser() { }
+    
+  public CustomSecurityUser(User user) {
+    this.setAuthorities(user.getAuthorities());
+    this.setId(user.getId());
+    this.setName(user.getName());
+    this.setPassword(user.getPassword());
+    this.setUsername(user.getUsername());
+  }
+
   @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
+  public Set<Authority> getAuthorities() {
+    return this.getAuthorities();
   }
 
   @Override
