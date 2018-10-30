@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     if (user == null)
       throw new UsernameNotFoundException("Invalid Username and password");
     
-    return null;
+    return user;
   }
 
 }
