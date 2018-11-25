@@ -5,5 +5,14 @@
 </head>
 <body>
   <h2>Register For An Account</h2>
+  
+  <form action="" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    Name: <input type="text" th:field="${user.name}"/><br/>
+    Email Address: <input type="text" th:field="${user.username}"/><br/>
+    Password: <input type="password" th:field="${user.password}"/><br/>
+    Confirm Password: <input type="password" id="confirmPassword"/><br/><br/>
+    <button type="submit">Create Account</button>
+  </form>
 </body>
 </html>
