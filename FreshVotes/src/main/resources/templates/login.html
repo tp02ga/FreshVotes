@@ -17,25 +17,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="row">
-      <div class="col-3" style="background-color: gray; height: 100px;">
-        
-      </div>
-      <div class="col-3" style="background-color: black; height: 100px;">
-      
-      </div>
-      <div class="col-6" style="background-color: green; height: 100px;">
-        
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <form action="" method="post">
-          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-          <fieldset>
-            <legend>Please Login</legend>
+    <div class="card" style="margin-top: 1.5em;">
+      <div class="card-header"><h2>Please Login</h2></div>
+      <div class="card-body">
+          <form action="" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
-            <div th:if="${param.error != null}">
+            <div th:if="${param.error != null}" class="alert alert-danger" role="alert">
               Failed to login.
               <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                       Reason: <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
@@ -46,14 +34,14 @@
               You have been logged out.
             </div>
             <div class="form-group row">
-              <label for="username" class="col-2 col-form-label">Username</label> 
-              <div class="col-10">
+              <label for="username" class="col-12 col-sm-3 col-md-2 col-form-label">Username</label> 
+              <div class="col-12 col-sm-9 col-md-10">
                 <input type="text" class="form-control" id="username" name="username"/>
               </div>
             </div>
             <div class="form-group row">
-              <label for="password" class="col-2 col-form-label">Password</label>
-              <div class="col-10">
+              <label for="password" class="col-12 col-sm-3 col-md-2 col-form-label">Password</label>
+              <div class="col-12 col-sm-9 col-md-10">
                 <input type="password" class="form-control" id="password" name="password"/>
               </div>
             </div>
@@ -65,19 +53,7 @@
                 <button type="button" class="btn btn-info float-right" id="createAccount">Create Account</button>
               </div>
             </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-3" style="background-color: gray; height: 100px;">
-        <h3 style="color: white; text-align: center; padding-top: 1em;">col-3</h3>
-      </div>
-      <div class="col-3" style="background-color: black; height: 100px;">
-      <h3 style="color: white; text-align: center; padding-top: 1em;">col-3</h3>
-      </div>
-      <div class="col-6" style="background-color: green; height: 100px;">
-        <h3 style="color: white; text-align: center; padding-top: 1em;">col-6</h3>
+          </form>
       </div>
     </div>
   </div>
