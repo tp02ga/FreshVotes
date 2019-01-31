@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
   <head>
     <title>FreshVotes Products</title>
   </head>
   <body>
-    <h1>Product</h1>
+    <div class="container" th:if="${product != null}">
+      <h1>Product</h1>
+      
+      <div th:text="|Is product published: ${product.published}|">
+        Here's is the content of the div text    
+      </div>
+    </div>
   </body>
 </html>
