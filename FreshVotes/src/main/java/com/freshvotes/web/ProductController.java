@@ -26,7 +26,7 @@ public class ProductController {
   
   @GetMapping("/products/{productId}")
   public String getProduct(@PathVariable Long productId, ModelMap model, HttpServletResponse response) throws IOException {
-    Optional<Product> productOpt = productRepo.findById(productId);
+    Optional<Product> productOpt = productRepo.findByIdWithUser(productId);
     
     if (productOpt.isPresent()) {
       Product product = productOpt.get();

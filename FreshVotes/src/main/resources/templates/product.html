@@ -11,6 +11,7 @@
       <form action="" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <input type="hidden" th:field="${product.id}"/>
+        <input type="hidden" th:field=${product.user}/>
         
         <div class="form-group row">
           <label for="name" class="col-12 col-sm-3 col-md-2 col-form-label">Name:</label> 
