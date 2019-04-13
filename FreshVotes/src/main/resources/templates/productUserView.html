@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+  <head>
+    <script th:replace="fragments/header :: headerElement"></script>
+    <title th:text="${product.name}">FreshVotes Product</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: header"></div>
+    <div class="container" th:if="${product != null}">
+      <h1 th:text="${product.name}">Product</h1>
+      
+      <form th:action="@{/products/{productId}/features(productId=${product.id})}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        
+        
+        <button class="btn btn-primary btn-lg">Create Feature Request</button>
+      </form>
+    </div>
+  </body>
+</html>

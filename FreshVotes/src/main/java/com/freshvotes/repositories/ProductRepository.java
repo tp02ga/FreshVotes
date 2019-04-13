@@ -17,4 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
   Optional<Product> findByIdWithUser(Long id);
   
   List<Product> findByUser(User user);
+  
+  // this will (roughtly) create this SQL statement: select * from product where name = :name
+  Optional<Product> findByName(String name); 
 }
