@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
+// POST -> freshvotes.com/products/{productId}/features   (create a feature request)
+// GET ->  freshvotes.com/products/{productId}/features/{featureId}   (get a feature)
 @Entity
 public class Feature
 {
