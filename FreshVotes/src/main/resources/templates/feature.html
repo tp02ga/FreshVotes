@@ -7,22 +7,31 @@
   <body>
     <div th:replace="fragments/header :: header"></div>
     <div class="container">
-      <h1>New Feature</h1>
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <h1>New Feature</h1>
+        </div>
+        <div class="col-12 col-sm-4">
+          <span style="font-size: 1.25em; margin-top: 0.5em;" class="badge badge-secondary" th:text="${feature.status}"></span>
+        </div>
+      </div>
       
-      <form action="" method="post">
+      <form action="" method="post" style="margin-top: 1em">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <input type="hidden" th:field="${feature.id}"/>
         <input type="hidden" th:field="${feature.product}"/>
         <input type="hidden" th:field="${feature.status}"/>
-        <div>
-          <label>Title: </label>
-          <input type="text" th:field="${feature.title}"/>
+        <div class="form-group">
+          <label for="title">Title: </label>
+          <input type="text" class="form-control" th:field="${feature.title}"/>
         </div>
         <div>
-          <label>Description: </label>
-          <input type="text" th:field="${feature.description}"/>
+          <label for="description">Description: </label>
+          <textarea th:field="${feature.description}" class="form-control">
+          </textarea>
+<!--           <input type="text" class="form-control" th:field="${feature.description}"/> -->
         </div>
-        <div>
+        <div style="margin-top: 2em;">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
