@@ -19,21 +19,30 @@
         </div>
       </div>
       
-      <div class="jumbotron">
-        <div th:if="${products != null}">
-          <div class="row" style="margin-top: -1em">
-            <div class="col">
-              <h2>Products</h2>
-            </div>
-          </div>
-          
-          <div class="row" th:each="product : ${products}">
-            <div class="col">
-              <a th:href="@{/products/{productId}(productId=${product.id})}" th:text="${product.name}"></a>
-            </div>
-          </div>
+      <div class="card" th:each="product : ${products}" style="margin: 1em 0em">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${product.name}">Special title treatment</h5>
+          <h6 class="card-subtitle mb-2 text-muted" th:text="${product.published ? 'Published' : 'Not Published'}">Card subtitle</h6>
+          <a th:href="@{/products/{productId}(productId=${product.id})}" class="btn btn-info">Edit</a>
+          <a th:href="@{/p/{productName}(productName=${product.name})}" class="btn btn-info">View Feature Requests</a>
         </div>
       </div>
+      
+<!--       <div class="jumbotron"> -->
+<!--         <div th:if="${products != null}"> -->
+<!--           <div class="row" style="margin-top: -1em"> -->
+<!--             <div class="col"> -->
+<!--               <h2>Products</h2> -->
+<!--             </div> -->
+<!--           </div> -->
+          
+<!--           <div class="row" th:each="product : ${products}"> -->
+<!--             <div class="col"> -->
+<!--               <a th:href="@{/products/{productId}(productId=${product.id})}" th:text="${product.name}"></a> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
       
       <div class="row">
         <div class="col">
