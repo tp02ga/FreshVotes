@@ -21,17 +21,18 @@
         <input type="hidden" th:field="${feature.id}"/>
         <input type="hidden" th:field="${feature.product}"/>
         <input type="hidden" th:field="${feature.status}"/>
+        
         <div class="form-group">
           <label for="title">Title: </label>
-          <input type="text" class="form-control" th:field="${feature.title}"/>
+          <input type="text" class="form-control" th:field="${feature.title}" th:attrappend="disabled=${user.id == feature.user.id ? null : 'disabled'}"/>
         </div>
         <div>
           <label for="description">Description: </label>
-          <textarea th:field="${feature.description}" class="form-control">
+          <textarea th:field="${feature.description}" class="form-control" th:attrappend="disabled=${user.id == feature.user.id ? null : 'disabled'}">
           </textarea>
 <!--           <input type="text" class="form-control" th:field="${feature.description}"/> -->
         </div>
-        <div style="margin-top: 2em;">
+        <div style="margin-top: 2em;" th:if="${user.id == feature.user.id}">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
