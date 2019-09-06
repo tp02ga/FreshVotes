@@ -12,10 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 // POST -> freshvotes.com/products/{productId}/features   (create a feature request)
 // GET ->  freshvotes.com/products/{productId}/features/{featureId}   (get a feature)
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Feature
 {
   private Long id;
