@@ -1,13 +1,11 @@
 <html xmlns:th="http://thymeleaf.org">
   <body>
     <div th:fragment="commentThread" th:remove="tag">
-        <ul>
-            <li th:each="comment : ${thread.comments}" >
-                <span th:text="${comment.text}">Town hall</span>
-                <div th:with="thread = ${comment}"
-                       th:include="fragments/comment.html :: commentThread" th:remove="tag" ></div>
-            </li>
-        </ul>
+      <div th:each="comment : ${thread}" style="margin-left: 1em">
+        <span th:text="${comment.text}">Example comment</span>
+        <div th:with="thread = ${comment.comments}"
+               th:include="fragments/comment.html :: commentThread" th:remove="tag" ></div>
+      </div>
     </div>
   </body>
 </html>

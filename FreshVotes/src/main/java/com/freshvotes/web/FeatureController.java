@@ -47,7 +47,7 @@ public class FeatureController {
       Feature feature = featureOpt.get();
       model.put("feature", feature);
       SortedSet<Comment> commentsWithoutDuplicates = getCommentsWithoutDuplicates(0, new HashSet<Long>(), feature.getComments());
-      model.put("comments", commentsWithoutDuplicates);
+      model.put("thread", commentsWithoutDuplicates);
     }
     // TODO: handle the situation where we can't find a feature by the featureId
     model.put("user", user);
