@@ -1,7 +1,7 @@
 package com.freshvotes.domain;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class Feature
   private String status;
   private Product product;
   private User user;
-  private Set<Comment> comments = new HashSet<>();
+  private Set<Comment> comments = new TreeSet<>();
   
   @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
   public Long getId()

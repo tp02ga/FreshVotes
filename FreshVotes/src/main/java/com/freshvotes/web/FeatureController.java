@@ -3,6 +3,7 @@ package com.freshvotes.web;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.freshvotes.domain.Comment;
 import com.freshvotes.domain.Feature;
 import com.freshvotes.domain.User;
 import com.freshvotes.service.FeatureService;
@@ -41,12 +43,18 @@ public class FeatureController {
     if (featureOpt.isPresent()) {
       Feature feature = featureOpt.get();
       model.put("feature", feature);
-      model.put("comments", feature.getComments());
+      model.put("comments", getCommentsWithoutDuplicates(feature));
     }
     // TODO: handle the situation where we can't find a feature by the featureId
     model.put("user", user);
     
     return "feature";
+  }
+
+  private Set<Comment> getCommentsWithoutDuplicates(Feature feature) {
+    Set<Comment> comments = feature.getComments();
+    
+    return comments;
   }
   
   @PostMapping("{featureId}")
