@@ -2,8 +2,11 @@ package com.freshvotes.web;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +46,8 @@ public class FeatureController {
     if (featureOpt.isPresent()) {
       Feature feature = featureOpt.get();
       model.put("feature", feature);
-      model.put("comments", getCommentsWithoutDuplicates(feature));
+      Set<Comment> commentsWithoutDuplicates = getCommentsWithoutDuplicates(0, new HashSet<Long>(), feature.getComments());
+      model.put("comments", commentsWithoutDuplicates);
     }
     // TODO: handle the situation where we can't find a feature by the featureId
     model.put("user", user);
@@ -51,8 +55,20 @@ public class FeatureController {
     return "feature";
   }
 
-  private Set<Comment> getCommentsWithoutDuplicates(Feature feature) {
-    Set<Comment> comments = feature.getComments();
+  private Set<Comment> getCommentsWithoutDuplicates(int page, Set<Long> visitedComments, Set<Comment> comments) {
+    page++;
+    Iterator<Comment> itr = comments.iterator();
+    while (itr.hasNext()) {
+      Comment comment = itr.next();
+      boolean addedToVisitedComments = visitedComments.add(comment.getId());
+      if (!addedToVisitedComments) {
+        itr.remove();
+        if (page != 1)
+          return comments;
+      }
+      if (addedToVisitedComments && !comment.getComments().isEmpty())
+        getCommentsWithoutDuplicates(page, visitedComments, comment.getComments());
+    }
     
     return comments;
   }
