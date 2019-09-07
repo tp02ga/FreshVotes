@@ -51,6 +51,9 @@
             <span th:text="${commentLevel1.text}"></span>
             <div th:each="commentLevel2 : ${commentLevel1.comments}" style="margin-left: 1em;">
               <span th:text="${commentLevel2.text}"></span>
+              <div th:each="commentLevel3 : ${commentLevel2.comments}" style="margin-left: 1em;">
+                <span th:text="${commentLevel3.text}"></span>
+              </div>
             </div>
           </div>
         </div>

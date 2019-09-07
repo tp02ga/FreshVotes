@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ public class FeatureController {
     if (featureOpt.isPresent()) {
       Feature feature = featureOpt.get();
       model.put("feature", feature);
-      Set<Comment> commentsWithoutDuplicates = getCommentsWithoutDuplicates(0, new HashSet<Long>(), feature.getComments());
+      SortedSet<Comment> commentsWithoutDuplicates = getCommentsWithoutDuplicates(0, new HashSet<Long>(), feature.getComments());
       model.put("comments", commentsWithoutDuplicates);
     }
     // TODO: handle the situation where we can't find a feature by the featureId
@@ -55,7 +55,7 @@ public class FeatureController {
     return "feature";
   }
 
-  private Set<Comment> getCommentsWithoutDuplicates(int page, Set<Long> visitedComments, Set<Comment> comments) {
+  private SortedSet<Comment> getCommentsWithoutDuplicates(int page, Set<Long> visitedComments, SortedSet<Comment> comments) {
     page++;
     Iterator<Comment> itr = comments.iterator();
     while (itr.hasNext()) {
