@@ -39,12 +39,18 @@
       
       <div style="margin-top: 2em; margin-bottom: 3em">
         <h2>Comments</h2>
-        <form action="">
+        <form th:action="@{/products/{productId}/features/{featureId}/comments(productId=${feature.product.id},featureId=${feature.id})}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          
           <div class="form-group" style="margin-top: 1.5em">
-            <label for="exampleFormControlTextarea1">Leave a comment below</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="text">Leave a comment below</label>
+            <textarea class="form-control" th:field="${comment.text}" rows="3"></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Add Comment</button>
           </div>
         </form>
+        <hr/>
         <div th:replace="fragments/comment :: commentThread"></div>
       </div>
     </div>
