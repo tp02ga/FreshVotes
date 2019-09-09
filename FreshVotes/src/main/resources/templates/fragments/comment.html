@@ -6,7 +6,20 @@
           <strong>[[${comment.user.name}]]</strong> - [[${#dates.format(comment.createdDate, 'MMM dd, yyyy h:mm a')}]]
         </div>
         <span th:text="${comment.text}">Example comment</span>
-        <div><a style="margin-left: 8.5em" href="">like</a><a style="margin-left: 2em" href="">reply</a></div>
+        <div>
+          <button class="btn btn-link" th:id="|replyBtn-${comment.id}|" style="margin-left: 12em">reply</button>
+        </div>
+        <form th:id="|replyForm-${comment.id}|" class="d-none" th:action="@{/products/{productId}/features/{featureId}/comments(productId=${feature.product.id},featureId=${feature.id})}" method="post">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          
+          <div class="form-group" style="margin-top: 1.5em">
+            <label for="text">Leave a comment below</label>
+            <textarea class="form-control" th:field="${comment.text}" rows="3"></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+          </div>
+        </form>
         <hr/>
         <div th:with="thread = ${comment.comments}"
                th:include="fragments/comment.html :: commentThread" th:remove="tag" ></div>
