@@ -2,7 +2,12 @@
   <body>
     <div th:fragment="commentThread" th:remove="tag">
       <div th:each="comment : ${thread}" style="margin-left: 1em">
+        <div th:inline="text">
+          <strong>[[${comment.user.name}]]</strong> - [[${#dates.format(comment.createdDate, 'MMM dd, yyyy h:mm a')}]]
+        </div>
         <span th:text="${comment.text}">Example comment</span>
+        <div><a style="margin-left: 8.5em" href="">like</a><a style="margin-left: 2em" href="">reply</a></div>
+        <hr/>
         <div th:with="thread = ${comment.comments}"
                th:include="fragments/comment.html :: commentThread" th:remove="tag" ></div>
       </div>
