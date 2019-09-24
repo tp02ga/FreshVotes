@@ -6,10 +6,10 @@
       $(function () {
     	$("button[id*='replyBtn-']").click(function () {
     	  $("form[id*='replyForm-']:not(.d-none)").each(function () {
-    		let commentId = $(this).prop("id").split("-")[1]
-    	    let formId = "replyForm-" + commentId
+    		  // used to hide currently displayed child comment forms
+    		  let formId = $(this).prop("id")
     	    
-    	    $("#"+formId).addClass("d-none")
+    	      $("#"+formId).addClass("d-none")
     	  })
     	  let commentId = $(this).prop("id").split("-")[1]
     	  let formId = "replyForm-" + commentId
@@ -60,7 +60,7 @@
           
           <div class="form-group" style="margin-top: 1.5em">
             <label for="text">Leave a comment below</label>
-            <textarea class="form-control" th:field="${comment.text}" rows="3"></textarea>
+            <textarea class="form-control" th:field="${rootComment.text}" rows="3"></textarea>
           </div>
           <div>
             <button type="submit" class="btn btn-primary">Add Comment</button>
