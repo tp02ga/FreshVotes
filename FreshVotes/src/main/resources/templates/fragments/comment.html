@@ -11,10 +11,10 @@
         </div>
         <form th:id="|replyForm-${comment.id}|" class="d-none" th:action="@{/products/{productId}/features/{featureId}/comments(productId=${feature.product.id},featureId=${feature.id})}" method="post">
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-          
+          <input type="hidden" name="parentId" th:id="|parentId-${comment.id}|" th:value="${comment.id}"/>
           <div class="form-group" style="margin-top: 1.5em">
             <label for="text">Leave a comment below</label>
-            <textarea class="form-control" th:field="${comment.text}" rows="3"></textarea>
+            <textarea class="form-control" name="childCommentText" th:id="|childCommentText-${comment.id}|" rows="3"></textarea>
           </div>
           <div>
             <button type="submit" class="btn btn-primary">Add Comment</button>
